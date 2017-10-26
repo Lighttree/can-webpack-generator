@@ -1,0 +1,28 @@
+{
+    "name": "generator-can-webpack",
+    "version": "0.1.0",
+    "description": "Set of generators to bootstrap project with Can.js, Webpack, Mocha, Sass",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Lighttree/generator-can-webpack.git"
+    },
+    "files": [
+        "app"
+    ],
+    "keywords": [
+        "yeoman-generator"
+    ],
+    "author": "Viktor Busko",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Lighttree/generator-can-webpack/issues"
+    },
+    "homepage": "https://github.com/Lighttree/generator-can-webpack#readme",
+    "dependencies": {
+        "yeoman-generator": "^2.0.1"
+    }
+}
