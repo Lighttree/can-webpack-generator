@@ -23,6 +23,7 @@
     },
     "homepage": "https://github.com/Lighttree/generator-can-webpack#readme",
     "dependencies": {
+        "validate-npm-package-name": "^3.0.0",
         "yeoman-generator": "^2.0.1"
     }
 }

@@ -1,0 +1,19 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "indent": ["error", 4],
+        "max-len": ["error", 200],
+        "func-names": ["error", "never"],
+        "comma-dangle": ["error", "never"],
+        "linebreak-style": "off",
+        "no-plusplus": "off",
+        "no-multi-assign": "off",
+        "no-param-reassign": "off",
+        "prefer-const": "off",
+        "import/no-extraneous-dependencies": "off"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    }
+}
