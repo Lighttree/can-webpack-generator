@@ -1,14 +1,13 @@
 const Generator = require('yeoman-generator');
 const path = require('path');
 const validatePackageName = require('validate-npm-package-name');
+const dependencies = require('./dependencies');
 
 module.exports = class extends Generator {
-    constructor(args, opts) {
-        super(args, opts);
-
+    initializing() {
         // Check if root already has existent package.json
         this.pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
-
+        
         this.props = {
             name: this.pkg.name,
             description: this.pkg.description,
@@ -36,13 +35,24 @@ module.exports = class extends Generator {
             when: !this.pkg.description,
             default: 'An awesome CanJS app'
         }, {
+            name: 'authorName',
+            message: 'Author\'s Name',
+            when: !this.pkg.author,
+            default: this.git ? this.git.name() : ''
+        }, {
+            name: 'authorEmail',
+            message: 'Author\'s Email',
+            when: !this.pkg.author,
+            default: this.git ? this.git.email() : ''
+        }, {
             name: 'keywords',
             message: 'Application keywords',
             when: !this.pkg.keywords
         }, {
             name: 'repository',
             message: 'Repository',
-            when: !this.pkg.repository
+            when: !this.pkg.repository,
+            default: `git@git1.corp.globoforce.com:${process.cwd().split(path.sep).pop()}.git`
         }];
 
         this.prompt(prompts).then((props) => {
@@ -72,8 +82,17 @@ module.exports = class extends Generator {
         );
 
         this.fs.copy(
-            this.templatePath('.*'),
-            this.destinationPath()
+            this.templatePath('./.*'),
+            this.destinationRoot()
         );
+    }
+
+    // install() {
+    //     this.npmInstall(dependencies.dependencies);
+    //     this.npmInstall(dependencies.devDependencies, {'save-dev': true });
+    // }
+
+    end() {
+        console.log('Done !');
     }
 };
