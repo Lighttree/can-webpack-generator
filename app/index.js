@@ -39,6 +39,10 @@ module.exports = class extends Generator {
             name: 'keywords',
             message: 'Application keywords',
             when: !this.pkg.keywords
+        }, {
+            name: 'repository',
+            message: 'Repository',
+            when: !this.pkg.repository
         }];
 
         this.prompt(prompts).then((props) => {
@@ -61,6 +65,15 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        // TODO: to be continue ...
+        this.fs.copyTpl(
+            this.templatePath(),
+            this.destinationPath(),
+            this.props
+        );
+
+        this.fs.copy(
+            this.templatePath('.*'),
+            this.destinationPath()
+        );
     }
 };
