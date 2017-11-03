@@ -51,8 +51,7 @@ module.exports = class extends Generator {
         }, {
             name: 'repository',
             message: 'Repository',
-            when: !this.pkg.repository,
-            default: `git@git1.corp.globoforce.com:${process.cwd().split(path.sep).pop()}.git`
+            when: !this.pkg.repository
         }];
 
         this.prompt(prompts).then((props) => {
