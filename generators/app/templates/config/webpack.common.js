@@ -90,7 +90,6 @@ module.exports = {
          */
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            chunksSortMode: 'manual',
             chunks: ['main'],
             inject: 'body',
             hash: true

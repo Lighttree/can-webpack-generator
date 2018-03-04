@@ -26,7 +26,7 @@ module.exports = class extends Generator {
             name: 'name',
             message: 'Project name',
             when: !this.pkg.name,
-            default: this.determineAppname()
+            default: process.cwd().split(path.sep).pop()
         }, {
             name: 'version',
             message: 'Version',
@@ -60,8 +60,8 @@ module.exports = class extends Generator {
         }];
 
         return this.prompt(prompts).then((props) => {
-            let nameValidationResults = validatePackageName(props.name);
-            let isValidName = nameValidationResults.validForNewPackages;
+            const nameValidationResults = validatePackageName(props.name);
+            const isValidName = nameValidationResults.validForNewPackages;
 
             if (!isValidName) {
                 Error(`Your project name ${props.name} is not valid. Please try another name. Reason ${nameValidationResults.errors[0]}`);

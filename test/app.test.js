@@ -4,25 +4,19 @@ const helpers = require('yeoman-test');
 
 function getDefaultFilesForAppPath(appPath) {
     return [
-        `${appPath}/config/utils.js`,
         `${appPath}/config/webpack.common.js`,
         `${appPath}/config/webpack.prod.js`,
         `${appPath}/config/webpack.dev.js`,
         `${appPath}/src/app/models/fixtures/fixtures.js`,
         `${appPath}/src/app/models/test.js`,
         `${appPath}/src/app/app.js`,
+        `${appPath}/src/app/app.md`,
         `${appPath}/src/app/app.scss`,
         `${appPath}/src/app/app.stache`,
-        `${appPath}/src/app/polyfills.browser.js`,
         `${appPath}/src/index.html`,
-        '.csscomb.json',
-        '.eslintrc.json',
         '.gitignore',
-        'assembly.xml',
         'package.json',
-        'pom.xml',
-        'readme.md',
-        'webpack.config.js'
+        'README.md'
     ];
 }
 

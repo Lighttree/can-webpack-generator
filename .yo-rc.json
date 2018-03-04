@@ -1,5 +1,5 @@
 {
-    "generator-node": {
+    "generator-can-webpack": {
         "promptValues": {
             "authorName": "Viktor Busko",
             "authorEmail": "viktor_busko@epam.com",

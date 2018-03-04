@@ -4,7 +4,10 @@
     "description": "<%= description %>",
     "main": "src/app/app.js",
     "scripts": {
-        "develop": "npm run webpack-dev-server -- --config config/webpack.dev.js --inline --hot --content-base src/"
+        "develop": "webpack-dev-server --config config/webpack.dev.js --inline --hot",
+        "build": "webpack --config config/webpack.prod.js",
+        "start": "npm run build && http-server dist -c-1 --cors",
+        "test": "test"
     },
     "repository": {
         "type": "git",
