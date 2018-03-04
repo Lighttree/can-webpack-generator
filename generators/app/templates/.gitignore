@@ -27,6 +27,7 @@ node
 # IDE specific folders
 .idea
 .history
+.vscode
 
 # Maven target directory
 target

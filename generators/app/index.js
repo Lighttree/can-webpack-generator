@@ -1,13 +1,16 @@
 const Generator = require('yeoman-generator');
 const path = require('path');
+const chalk = require('chalk');
+const yosay = require('yosay');
 const validatePackageName = require('validate-npm-package-name');
 const dependencies = require('./dependencies');
+const utils = require('../../lib/utils');
 
 module.exports = class extends Generator {
     initializing() {
         // Check if root already has existent package.json
         this.pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
-        
+
         this.props = {
             name: this.pkg.name,
             description: this.pkg.description,
@@ -17,18 +20,18 @@ module.exports = class extends Generator {
     }
 
     prompting() {
-        let done = this.async();
+        this.log(yosay(`Welcome to the swell ${chalk.red('generator-can-webpack')} generator!`));
 
         const prompts = [{
             name: 'name',
             message: 'Project name',
             when: !this.pkg.name,
-            default: process.cwd().split(path.sep).pop()
+            default: this.determineAppname()
         }, {
             name: 'version',
             message: 'Version',
             when: !this.pkg.version,
-            default: '0.1.0'
+            default: '0.0.0'
         }, {
             name: 'description',
             message: 'Description',
@@ -38,38 +41,34 @@ module.exports = class extends Generator {
             name: 'authorName',
             message: 'Author\'s Name',
             when: !this.pkg.author,
-            default: this.git ? this.git.name() : ''
+            default: this.user.git.name()
         }, {
             name: 'authorEmail',
             message: 'Author\'s Email',
             when: !this.pkg.author,
-            default: this.git ? this.git.email() : ''
+            default: this.user.git.email()
         }, {
             name: 'keywords',
             message: 'Application keywords',
-            when: !this.pkg.keywords
+            when: !this.pkg.keywords,
+            default: `${process.cwd().split(path.sep).pop()}, javascript, canjs, node, sass, jest`
         }, {
             name: 'repository',
             message: 'Repository',
-            when: !this.pkg.repository
+            when: !this.pkg.repository,
+            default: utils.getRepoUrl()
         }];
 
-        this.prompt(prompts).then((props) => {
-            let nameValidationResults;
-            let isValidName;
-
-            Object.assign(this.props, props);
-
-            nameValidationResults = validatePackageName(this.props.name);
-            isValidName = nameValidationResults.validForNewPackages;
+        return this.prompt(prompts).then((props) => {
+            let nameValidationResults = validatePackageName(props.name);
+            let isValidName = nameValidationResults.validForNewPackages;
 
             if (!isValidName) {
-                let error = new Error(`Your project name ${this.props.name} is not valid. Please try another name. Reason ${nameValidationResults.errors[0]}`);
-                done(error);
-                return;
+                Error(`Your project name ${props.name} is not valid. Please try another name. Reason ${nameValidationResults.errors[0]}`);
             }
 
-            done();
+            // To access props later use this.props.someAnswer;
+            Object.assign(this.props, props);
         });
     }
 
@@ -84,14 +83,19 @@ module.exports = class extends Generator {
             this.templatePath('./.*'),
             this.destinationRoot()
         );
+
+        // Adds list of keywords.
+        this.fs.extendJSON(`${this.destinationRoot()}/package.json`, { keywords: utils.getKeywords(this.props.keywords) }, undefined, 4);
     }
 
-    // install() {
-    //     this.npmInstall(dependencies.dependencies);
-    //     this.npmInstall(dependencies.devDependencies, {'save-dev': true });
-    // }
+    install() {
+        if (!this.options.skipInstall) {
+            this.npmInstall(dependencies.dependencies);
+            this.npmInstall(dependencies.devDependencies, { 'save-dev': true });
+        }
+    }
 
     end() {
-        console.log('Done !');
+        this.log(yosay(chalk.red('Done !')));
     }
 };

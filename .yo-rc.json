@@ -1,0 +1,9 @@
+{
+    "generator-node": {
+        "promptValues": {
+            "authorName": "Viktor Busko",
+            "authorEmail": "viktor_busko@epam.com",
+            "authorUrl": ""
+        }
+    }
+}

@@ -1,0 +1,4 @@
+<div class="app">
+    <h1>{{ message }}</h1>
+    <h2>This is {{ title }} application.</h2>
+</div>

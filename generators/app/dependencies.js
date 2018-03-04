@@ -10,16 +10,17 @@ module.exports = {
         'eslint-config-airbnb-base',
         'eslint-plugin-import',
         'extract-text-webpack-plugin',
-        'http-server',
+        'file-loader',
+        'html-webpack-plugin',
         'imports-loader',
         'node-sass',
         'raw-loader',
         'rimraf',
         'sass-loader',
-        'script-ext-html-webpack-plugin',
         'style-loader',
         'svg-sprite-loader',
         'webpack',
+        'webpack-cli',
         'webpack-dev-server',
         'webpack-merge'
     ],
@@ -29,10 +30,9 @@ module.exports = {
         'can-connect',
         'can-define',
         'can-route',
-        'can-route-pushstate',
         'can-set',
         'can-stache',
         'can-stache-bindings',
         'core-js'
     ]
-}
+};

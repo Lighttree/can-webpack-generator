@@ -1,29 +1,39 @@
 {
     "name": "generator-can-webpack",
-    "version": "0.1.0",
-    "description": "Set of generators to bootstrap project with Can.js, Webpack, Mocha, Sass",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+    "version": "0.0.0",
+    "description": "Set of generators to bootstrap project with Can.js, Webpack, Jest, Sass",
+    "author": {
+        "name": "Viktor Busko",
+        "email": "viktor_busko@epam.com"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Lighttree/generator-can-webpack.git"
-    },
-    "files": [
-        "app"
-    ],
     "keywords": [
         "yeoman-generator"
     ],
-    "author": "Viktor Busko",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Lighttree/generator-can-webpack/issues"
+    "repository": "git@git1.corp.globoforce.com:front-end/generator-can-webpack.git",
+    "scripts": {
+        "test": "mocha --timeout 600000"
     },
-    "homepage": "https://github.com/Lighttree/generator-can-webpack#readme",
+    "homepage": "https://git1.corp.globoforce.com/front-end/generator-can-webpack",
+    "license": "MIT",
+    "eslintConfig": {
+        "extends": "airbnb-base",
+        "rules": {
+            "indent": ["error", 4],
+            "comma-dangle": ["error", "never"]
+        }
+    },
     "dependencies": {
-        "validate-npm-package-name": "^3.0.0",
-        "yeoman-generator": "^2.0.1"
+        "chalk": "^2.1.0",
+        "validate-npm-package-name": "3.0.0",
+        "yeoman-generator": "^2.0.1",
+        "yosay": "^2.0.1"
+    },
+    "devDependencies": {
+        "eslint": "^4.1.0",
+        "eslint-config-airbnb-base": "^12.1.0",
+        "eslint-plugin-import": "2.8.0",
+        "mocha": "4.0.1",
+        "yeoman-assert": "^3.1.0",
+        "yeoman-test": "^1.7.0"
     }
 }
